@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-kotlin-app
+  labels:
+    role: webapp
+spec:
+  containers:
+    - name: web
+      image: schatzdesigns/demo-kotlin
+      ports:
+        - containerPort: 80
+          name: web
+          protocol: TCP
