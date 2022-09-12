@@ -43,3 +43,7 @@ jobs:
           docker build . --tag demo-kotlin-image:0.0.2
           docker images -a
 
+      - name: Publish Docker image
+        run: |
+          docker login -u {{ secrets.DOCKER_USERNAME }} -p {{ secrets.DOCKER_PASSWORD }}
+
