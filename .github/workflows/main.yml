@@ -37,7 +37,9 @@ jobs:
         run: |
           docker -v
           docker
-          docker images -a
 
       - name: Build Docker image
-        run: docker build . --tag demo-kotlin-image:0.0.2
+        run: |
+          docker build . --tag demo-kotlin-image:0.0.2
+          docker images -a
+
