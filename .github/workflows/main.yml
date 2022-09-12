@@ -38,4 +38,4 @@ jobs:
           docker images -a
 
       - name: Build Docker image
-        run: docker build . -t demo-kotlin2.0
+        run: docker build . --tag demo-kotlin-image:0.0.2
