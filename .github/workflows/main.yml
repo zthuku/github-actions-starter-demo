@@ -29,7 +29,9 @@ jobs:
         run: java -version
 
       - name: Build Project
-        run: gradle build
+        run: |
+          gradle build
+          ls build/libs/
 
       - name: Check Docker version
         run: |
