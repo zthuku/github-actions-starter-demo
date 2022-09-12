@@ -30,3 +30,8 @@ jobs:
 
       - name: Build Project
         run: gradle build
+
+      - name: Check Docker version
+        run: |
+          docker -v
+          docker
