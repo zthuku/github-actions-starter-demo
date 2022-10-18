@@ -31,7 +31,6 @@ jobs:
       - name: Build Project
         run: |
           gradle build
-          ls build/libs/
 
       - name: Check Docker version
         run: |
