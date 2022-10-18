@@ -52,7 +52,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/demo-kotlin-image:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/demo-kotlin-image:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/demo-kotlin-image:buildcache,mode=max
+          tags: demo-kotlin-image:latest
+          cache-from: type=registry,ref=demo-kotlin-image:buildcache
+          cache-to: type=registry,ref=demo-kotlin-image:buildcache,mode=max
 
