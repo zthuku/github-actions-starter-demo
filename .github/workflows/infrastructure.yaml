@@ -18,10 +18,10 @@ jobs:
 
   steps:
 
-    - name: Checkout
+    - name: 'Checkout'
       uses: actions/checkout@v2
 
-    - name: Install Prerequisites
+    - name: 'Install Prerequisites'
       run: |
         curl -SL "https://releases.hashicorp.com/terraform/1.0.8/terraform_1.0.8_linux_amd64.zip" --output terraform.zip
         unzip "terraform.zip"
