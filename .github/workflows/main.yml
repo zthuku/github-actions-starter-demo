@@ -35,8 +35,8 @@ jobs:
           cluster-name: GitHubActionsTestAKS
           resource-group: GitHubActionsTest
 
-      - run: |
-          kubectl create namespace github-actions-test-namespace
+#      - run: |
+#          kubectl create namespace github-actions-test-namespace
 
       - run: |
           kubectl apply -f pod.yaml
