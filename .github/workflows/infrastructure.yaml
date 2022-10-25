@@ -18,7 +18,7 @@ jobs:
 
   steps:
     - name: Checkout
-      uses: actions/checkout/@v2
+      uses: actions/checkout@v2
 
     - name: Install Prerequisites
       run: |
@@ -28,3 +28,10 @@ jobs:
         mv terraform /usr/local/bin
         terraform --version
         rm terraform.zip
+
+    - name: Install Terraform Lint (TFLint)
+      run: |
+        curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+        unzip tflint_linux_amd64
+        mv tflint /usr/local/bin
+        
