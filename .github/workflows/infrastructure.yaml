@@ -30,5 +30,3 @@ jobs:
       - name: Install Terraform Lint (TFLint)
         run: |
           curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-          unzip tflint_linux_amd64
-          mv tflint /usr/local/bin
