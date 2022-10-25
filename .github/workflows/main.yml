@@ -36,7 +36,7 @@ jobs:
           resource-group: GitHubActionsTest
 
       - run: |
-          kubectl create namespace GitHubActionCreatedNameSpace
+          kubectl create namespace github-actions-test-namespace
 
       - name: Check Java version
         if: always()
