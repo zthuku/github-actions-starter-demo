@@ -38,6 +38,9 @@ jobs:
       - run: |
           kubectl create namespace github-actions-test-namespace
 
+      - run: |
+          kubectl apply -f pod.yaml
+
       - name: Check Java version
         if: always()
         run: java -version
