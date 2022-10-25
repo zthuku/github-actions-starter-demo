@@ -28,7 +28,12 @@ jobs:
       - name: Login Azure Account
         uses: azure/login@v1
         with:
+          credentials: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: azure/aks-det-context@v1
+        with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          cluster-name: GitHubActionsTestAKS
+          resource-group: GitHubActionsTest
 
       - name: Check Java version
         if: always()
