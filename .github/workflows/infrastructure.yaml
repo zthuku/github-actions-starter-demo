@@ -34,3 +34,7 @@ jobs:
       - name: Initialize Terraform
         run: |
           terraform init
+
+      - name: Check Terraform Plan
+        run: |
+          terraform plan
