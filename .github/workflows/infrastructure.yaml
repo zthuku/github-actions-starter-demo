@@ -44,3 +44,6 @@ jobs:
       - name: Check Terraform Plan
         run: |
           terraform plan
+
+      - name: Apply Terraform
+        run: terraform apply -auto-approve
