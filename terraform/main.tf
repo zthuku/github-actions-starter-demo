@@ -11,7 +11,7 @@ resource "random_pet" "rg-name" {
 }
 
 variable "location" {
-  default = "eastus"
+  default = "westeu"
 }
 
 resource "azurerm_resource_group" "rg" {
