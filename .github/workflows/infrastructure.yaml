@@ -15,6 +15,7 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
       ARM_SKIP_PROVIDER_REGISTRATION: true
     runs-on: ubuntu-latest
+    environment: production
 
     defaults:
       run:
