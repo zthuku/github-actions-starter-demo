@@ -29,6 +29,11 @@ resource "azurerm_resource_group" "rg" {
   name     = random_pet.rg-name.id
 }
 
+resource "azurerm_resource_group" "rg1" {
+  location = "westeurope"
+  name     = "createviapipeline"
+}
+
 output "resource_group_location" {
   value = azurerm_resource_group.rg.name
 }

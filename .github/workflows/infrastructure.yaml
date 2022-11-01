@@ -25,28 +25,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-#      - name: Install Prerequisites
-#        run: |
-#          curl -SL "https://releases.hashicorp.com/terraform/1.3.3/terraform_1.3.3_linux_amd64.zip" --output terraform.zip
-#          unzip "terraform.zip"
-#          mv terraform /usr/local/bin
-#          terraform --version
-#          rm terraform.zip
-#
-#      - name: Install Terraform Lint (TFLint)
-#        run: |
-#          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-#
-#      - name: Initialize Terraform
-#        run: |
-#          terraform init
-#
-#      - name: Check Terraform Plan
-#        run: |
-#          terraform plan
-#
-#      - name: Apply Terraform
-#        run: terraform apply -auto-approve
+      #      - name: Install Prerequisites
+      #        run: |
+      #          curl -SL "https://releases.hashicorp.com/terraform/1.3.3/terraform_1.3.3_linux_amd64.zip" --output terraform.zip
+      #          unzip "terraform.zip"
+      #          mv terraform /usr/local/bin
+      #          terraform --version
+      #          rm terraform.zip
+      #
+      #      - name: Install Terraform Lint (TFLint)
+      #        run: |
+      #          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+      #
+      #      - name: Initialize Terraform
+      #        run: |
+      #          terraform init
+      #
+      #      - name: Check Terraform Plan
+      #        run: |
+      #          terraform plan
+      #
+      #      - name: Apply Terraform
+      #        run: terraform apply -auto-approve
 
       - name: Check Terraform Lint Format
         uses: hashicorp/terraform-github-actions@master
@@ -67,4 +67,20 @@ jobs:
         with:
           tf_actions_version: 1.3.3
           tf_actions_subcommand: 'plan'
+          tf_actions_working_dir: "./terraform"
+
+      - name: Apply Terraform Config
+        if: github.ref == 'refs/head/master'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 1.3.3
+          tf_actions_subcommand: 'apply'
+          tf_actions_working_dir: "./terraform"
+
+      - name: Destroy Terraform
+        if: github.ref == 'refs/head/master'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 1.3.3
+          tf_actions_subcommand: 'destroy'
           tf_actions_working_dir: "./terraform"
