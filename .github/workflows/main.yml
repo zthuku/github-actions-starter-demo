@@ -35,8 +35,8 @@ jobs:
           cluster-name: GitHubActionsTestAKS
           resource-group: GitHubActionsTest
 
-#      - run: |
-#          kubectl create namespace github-actions-test-namespace
+      #      - run: |
+      #          kubectl create namespace github-actions-test-namespace
 
       - run: |
           kubectl apply -f pod.yaml
@@ -63,13 +63,30 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Tag Docker Images
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/$IMAGE_TAG .
+          docker push ${{ secrets.DOCKER_USERNAME }}/$IMAGE_TAG
+
+      - name: Tag Docker Images(Shortened)
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/${GITHUB_SHA::8} .
+          docker push ${{ secrets.DOCKER_USERNAME }}/${GITHUB_SHA::8}
+
+      - name: Use Github ENV Var
+        run: |
+          echo "SHORTEN_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+          echo $GITHUB_ENV
+
       - name: Build & Publish Docker Image
         uses: docker/build-push-action@v3
         with:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/demo-kotlin-image:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/demo-kotlin-image:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/demo-kotlin-image:buildcache,mode=max
+          tags: ${{ secrets.DOCKER_USERNAME }}/$SHORTEN_SHA:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/$SHORTEN_SHA:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/$SHORTEN_SHA:buildcache,mode=max
 
